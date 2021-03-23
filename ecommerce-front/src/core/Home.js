@@ -40,12 +40,12 @@ const Home = () => {
             <Search />
             <h2 className="mb-4">Best Sellers</h2>
             <div className="row">
-                {productsBySell.map((product, i) => (<Card key={i} product={product} />))}
+                {productsBySell.map((product, i) => (<Card key={i} product={product} customClass="col-4 mb-3" />))}
             </div>
 
             <h2 className="mb-4">New Arrivals</h2>
             <div className="row">
-                {productsByArival.map((product, i) => (<Card key={i} product={product} />))}
+                {productsByArival.map((product, i) => (<Card key={i} product={product} customClass="col-4 mb-3" />))}
             </div>
         </Layout>
     )

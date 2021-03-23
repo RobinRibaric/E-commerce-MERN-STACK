@@ -10,6 +10,14 @@ export const getProducts = (sortBy) => {
         .catch(err => console.log(err));
 };
 
+export const getProduct = (productId) => {
+    return fetch(`${API}/product/${productId}`, {
+        method: 'GET',
+    })
+        .then(res => res.json())
+        .catch(err => console.log(err));
+};
+
 export const list = params => {
     const query = queryString.stringify(params);
     console.log('query', query);
@@ -41,3 +49,11 @@ export const getFilteredProducts = (skip, limit, filters = {}) => {
         .then(res => res.json())
         .catch(err => console.log(err));
 }
+
+export const getRelatedProducts = (productId) => {
+    return fetch(`${API}/products/related/${productId}`, {
+        method: 'GET',
+    })
+        .then(res => res.json())
+        .catch(err => console.log(err));
+};

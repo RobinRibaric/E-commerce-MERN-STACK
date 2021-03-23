@@ -51,12 +51,26 @@ const Search = () => {
         setData({ ...data, [name]: e.target.value, searched: false });
     }
 
+    const searchMessage = (searched, results) => {
+        if (searched && results.length > 0) {
+            return `Found ${results.length} products`
+        }
+        if (searched && results.length < 1) {
+            return `No products found`
+        }
+    }
+
     const searchedProducts = (results = []) => {
         return (
-            <div className="row">
-                {results.map((product, i) => (
-                    <Card key={i} product={product} />
-                ))}
+            <div>
+                <h2 className="mt-4 mb-4">
+                    {searchMessage(searched, results)}
+                </h2>
+                <div className="row">
+                    {results.map((product, i) => (
+                        <Card key={i} product={product} />
+                    ))}
+                </div>
             </div>
         )
     }
@@ -68,7 +82,7 @@ const Search = () => {
                     <input type="search" className="form-control" onChange={handleChange('search')} placeholder="Search by name" />
                     <div className="input-group-prepend">
                         <select className="btn mr-2 category-picker" onChange={handleChange('category')}>
-                            <option value="All">Choose category</option>
+                            <option value="All">All Categories</option>
                             {categories.map((category, i) => (
                                 <option key={i} value={category._id}>{category.name}</option>
                             ))}
@@ -85,7 +99,7 @@ const Search = () => {
     return (
         <div>
             <div className=" container mb-3 col-8 row justify-content-start">{searchForm()}</div>
-            <div className=" container-fluid mb-3  ">{searchedProducts(results)}</div>
+            <div className=" container-fluid mb-3 cd ">{searchedProducts(results)}</div>
 
         </div>
     )
